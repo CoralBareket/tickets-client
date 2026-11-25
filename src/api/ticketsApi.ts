@@ -16,10 +16,6 @@ async function request<T>(
     try {
         response = await fetch(`${BASE_URL}${path}`, options);
     } catch (error) {
-        if (error instanceof Error && error.name === 'AbortError') {
-            throw error;
-        }
-
         throw new Error(
             "Can't reach the server. Please check that the API is running and try again."
         );
@@ -57,3 +53,32 @@ async function request<T>(
     return response.json();
 }
 
+export function getTickets(
+    status?: TicketStatus
+): Promise<Ticket[]> {
+    const params = new URLSearchParams();
+
+    if (status) {
+        params.set('status', status);
+    }
+
+    const query = params.toString();
+
+    const path = query
+        ? `/api/tickets?${query}`
+        : '/api/tickets';
+
+    return request<Ticket[]>(path);
+}
+
+export function createTicket(
+    data: CreateTicketRequest
+): Promise<Ticket> {
+    return request<Ticket>('/api/tickets', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+}
