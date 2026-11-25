@@ -82,3 +82,29 @@ export function createTicket(
         body: JSON.stringify(data),
     });
 }
+
+export function updateTicketStatus(
+    id: number,
+    status: TicketStatus
+): Promise<Ticket> {
+    const data: UpdateStatusRequest = { status };
+
+    return request<Ticket>(
+        `/api/tickets/${id}/status`,
+        {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }
+    );
+}
+
+export function deleteTicket(
+    id: number
+): Promise<void> {
+    return request<void>(`/api/tickets/${id}`, {
+        method: 'DELETE',
+    });
+}
