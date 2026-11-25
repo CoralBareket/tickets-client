@@ -5,7 +5,7 @@ import type {
     UpdateStatusRequest,
 } from '../types/ticket';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5115';
 
 async function request<T>(
     path: string,
@@ -17,7 +17,7 @@ async function request<T>(
         response = await fetch(`${BASE_URL}${path}`, options);
     } catch (error) {
         throw new Error(
-            "Can't reach the server. Please check that the API is running and try again."
+            "Can't reach the server. Please check that the API is running and try again.", { cause: error }
         );
     }
 
@@ -35,7 +35,9 @@ async function request<T>(
                         .flat()
                         .join(' ');
                 }
-            } catch { }
+            } catch {
+                // Response body is not JSON, keep the default error message
+            }
         } else if (response.status === 404) {
             message = 'This ticket no longer exists.';
         } else if (response.status >= 500) {
