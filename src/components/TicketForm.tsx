@@ -111,7 +111,7 @@ export function TicketForm({ onCreate }: TicketFormProps) {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
+                className="rounded bg-blue-400 px-4 py-2 text-white hover:bg-blue-600 disabled:opacity-50"
             >
                 {isSubmitting ? 'Creating...' : 'Create ticket'}
             </button>
