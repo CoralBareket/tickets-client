@@ -1,5 +1,4 @@
-import type { TicketStatus } from '../types/ticket';
-import { TICKET_STATUSES } from '../types/ticket';
+import { TICKET_STATUSES, type TicketStatus } from '../types/ticket';
 import { STATUS_LABELS } from '../utils/labels';
 
 interface TicketFiltersProps {
@@ -36,9 +35,9 @@ export function TicketFilters({
         >
           <option value="">All statuses</option>
 
-          {TICKET_STATUSES.map(status => (
-            <option key={status} value={status}>
-              {STATUS_LABELS[status]}
+          {TICKET_STATUSES.map(option => (
+            <option key={option} value={option}>
+              {STATUS_LABELS[option]}
             </option>
           ))}
         </select>
@@ -55,7 +54,7 @@ export function TicketFilters({
           value={searchText}
           onChange={e => onSearchChange(e.target.value)}
           placeholder="Search by title..."
-          className="rounded border border-gray-300 bg-white px-3 py-2"
+          className="w-full rounded border border-gray-300 bg-white px-3 py-2"
         />
       </div>
     </div>
