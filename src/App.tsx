@@ -1,16 +1,17 @@
-import { useTickets } from './hooks/useTickets';
+import { useState } from 'react';
+import type { TicketStatus } from './types/ticket';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import { ErrorMessage } from './components/ErrorMessage';
 import { TicketTable } from './components/TicketTable';
-import { useState } from 'react';
-import type { TicketStatus } from './types/ticket';
 import { TicketFilters } from './components/TicketFilters';
+import { TicketForm } from './components/TicketForm';
+import { useTickets } from './hooks/useTickets';
 
 function App() {
   const [statusFilter, setStatusFilter] = useState<TicketStatus | undefined>(undefined);
   const [searchText, setSearchText] = useState('');
 
-  const { tickets, isLoading, error, reload } = useTickets(statusFilter);
+  const { tickets, isLoading, error, reload, addTicket } = useTickets(statusFilter);
 
   const term = searchText.trim().toLowerCase();
 
@@ -48,6 +49,8 @@ function App() {
         <h1 className="mb-6 text-3xl font-bold text-gray-900">
           Support Tickets
         </h1>
+
+        <TicketForm onCreate={addTicket} />
 
         <TicketFilters
           status={statusFilter}
