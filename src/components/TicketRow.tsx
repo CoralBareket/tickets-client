@@ -86,7 +86,7 @@ export function TicketRow({
                     }
                     disabled={isBusy}
                     aria-label={`Status of ${ticket.title}`}
-                    className="field-sizing-content rounded-lg border-transparent bg-transparent px-2 py-2 focus:outline-none"                >
+                    className="field-sizing-content rounded-lg border-transparent bg-transparent px-2 py-2 focus:outline-none hover:text-gray-500"                >
                     {TICKET_STATUSES.map(option => (
                         <option key={option} value={option}>
                             {STATUS_LABELS[option]}
