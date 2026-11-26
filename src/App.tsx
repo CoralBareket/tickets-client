@@ -11,7 +11,7 @@ function App() {
   const [statusFilter, setStatusFilter] = useState<TicketStatus | undefined>(undefined);
   const [searchText, setSearchText] = useState('');
 
-  const { tickets, isLoading, error, reload, addTicket } = useTickets(statusFilter);
+  const { tickets, isLoading, error, reload, addTicket, changeStatus, removeTicket } = useTickets(statusFilter);
 
   const term = searchText.trim().toLowerCase();
 
@@ -40,7 +40,13 @@ function App() {
       </p>
     );
   } else {
-    content = <TicketTable tickets={visibleTickets} />;
+    content = (
+      <TicketTable
+        tickets={visibleTickets}
+        onStatusChange={changeStatus}
+        onDelete={removeTicket}
+      />
+    );
   }
 
   return (
