@@ -65,6 +65,27 @@ function App() {
           onSearchChange={setSearchText}
         />
 
+        <div className="mb-3 flex items-center justify-between">
+          {!isLoading && !error && (
+            <p className="text-sm text-gray-600">
+              {visibleTickets.length} of {tickets.length}
+            </p>
+          )}
+
+          {(statusFilter !== undefined || searchText !== '') && (
+            <button
+              type="button"
+              onClick={() => {
+                setStatusFilter(undefined);
+                setSearchText('');
+              }}
+              className="ml-auto text-sm text-blue-600 hover:underline"
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
+
         <div className="rounded-lg bg-white p-4 shadow">
           {content}
         </div>
