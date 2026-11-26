@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import { TICKET_PRIORITIES, type TicketPriority, type CreateTicketRequest } from '../types/ticket';
 import { ErrorMessage } from './ErrorMessage';
 
@@ -14,7 +14,7 @@ export function TicketForm({ onCreate }: TicketFormProps) {
     const [formError, setFormError] = useState<string | null>(null);
 
     async function handleSubmit(
-        e: FormEvent<HTMLFormElement>
+        e: SubmitEvent<HTMLFormElement>
     ): Promise<void> {
         e.preventDefault();
 
