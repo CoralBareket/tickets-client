@@ -104,7 +104,7 @@ export function TicketRow({
                     type="button"
                     onClick={handleDelete}
                     disabled={isBusy}
-                    className="rounded border border-red-300 px-3 py-2 text-red-600 hover:bg-red-50"
+                    className="rounded border-none px-3 py-2 text-red-600 hover:text-red-700 focus:outline-none"
                 >
                     Delete
                 </button>
