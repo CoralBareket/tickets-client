@@ -31,8 +31,7 @@ export function TicketFilters({
                 : (e.target.value as TicketStatus)
             )
           }
-          className="rounded border border-gray-300 bg-white px-3 py-2"
-        >
+          className="rounded-lg border border-gray-300 bg-transparent px-4 py-3 text-gray-600"        >
           <option value="">All statuses</option>
 
           {TICKET_STATUSES.map(option => (
@@ -54,7 +53,7 @@ export function TicketFilters({
           value={searchText}
           onChange={e => onSearchChange(e.target.value)}
           placeholder="Search by title..."
-          className="w-full rounded border border-gray-300 bg-white px-3 py-2"
+          className="rounded-lg border border-gray-300 bg-transparent px-4 py-3 text-gray-600"
         />
       </div>
     </div>
