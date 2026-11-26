@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TICKET_STATUSES, type Ticket, type TicketStatus } from '../types/ticket';
-import { STATUS_LABELS } from '../utils/labels';
+import { STATUS_LABELS, PRIORITY_COLORS } from '../utils/labels';
 
 interface TicketRowProps {
     ticket: Ticket;
@@ -71,7 +71,12 @@ export function TicketRow({
                 </div>
             </td>
 
-            <td className="p-3">{ticket.priority}</td>
+            <td className="p-3">
+                <span
+                    className={`rounded-full px-2 py-0.5 text-xs font-medium ${PRIORITY_COLORS[ticket.priority]
+                        }`}
+                >{ticket.priority}</span>
+            </td>
 
             <td className="p-3">
                 <select
